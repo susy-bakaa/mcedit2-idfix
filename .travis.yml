@@ -1,0 +1,60 @@
+os:
+  - osx
+
+osx_image: xcode8
+
+language: generic
+
+# Use new container-based Travis infrastructure.
+sudo: false
+
+# Cache pip packages. `cache: pip` does not work with custom install steps.
+cache:
+  directories:
+    - $HOME/Library/Caches/pip
+    - $HOME/.pip-accel
+
+install:
+  # Install wheel, upgrade pip to use wheel-cache
+  - pip install -U pip wheel
+  
+  # Download-progress bars break Travis's log view. Disable them by piping output
+  # through another program (if output is not a tty, no progress bars)
+  # Install dependencies.
+  - pip install -r requirements.txt | cat
+
+  # Install dependencies for tests.
+  - pip install -r tests/requirements.txt | cat
+
+  - pip install git+http://github.com/pyinstaller/pyinstaller@5f91905
+
+  # Install qt4 from third-party source
+  # https://github.com/cartr/homebrew-qt4
+  - brew update
+  - brew tap cartr/qt4
+  - brew tap-pin cartr/qt4
+  - brew install cartr/qt4/qt
+  - brew install pyside@1.2 pyside-tools@1.2
+
+  # where are libs?
+  - python -c 'from PySide.QtCore import QCoreApplication;app = QCoreApplication([]);print([str(p) for p in app.libraryPaths()])'
+
+  # - brew install pyside pyside-tools
+
+  # Install mcedit.
+  - python setup.py develop
+
+script:
+  - if [ "${TRAVIS_TAG}x" = "x" ]; then return 0; fi
+  - export MCEDIT_BUILD_VERSION=${TRAVIS_TAG}
+  - pyinstaller mcedit2.spec
+
+# Deploy to GitHub Releases
+deploy:
+  provider: releases
+  api_key: $GITHUB_AUTH_TOKEN
+  file: dist/mcedit2-*.zip
+  file_glob: true
+  skip_cleanup: true
+  on:
+    tags: true

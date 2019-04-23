@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>findReplaceDialog</class>
+ <widget class="QWidget" name="findReplaceDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>781</width>
+    <height>416</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Find and Replace...</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="findBlocksTab">
+      <attribute name="title">
+       <string>Find Blocks</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="replaceBlocksTab">
+      <attribute name="title">
+       <string>Replace Blocks</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="itemsTab">
+      <attribute name="title">
+       <string>Find/Replace Items</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="commandBlocksTab">
+      <attribute name="title">
+       <string>Find/Replace in Command Blocks</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="nbtTab">
+      <attribute name="title">
+       <string>Find/Replace NBT Data</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
