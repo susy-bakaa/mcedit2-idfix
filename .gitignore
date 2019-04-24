@@ -6,7 +6,6 @@
 *.whl
 *.exe
 
-
 # Vim temporary files.
 *.sw*
 
