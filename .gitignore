@@ -2,6 +2,10 @@
 *.pyc
 *.pyo
 *~
+# Python libraries.
+*.whl
+*.exe
+
 
 # Vim temporary files.
 *.sw*
