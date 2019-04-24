@@ -2,6 +2,7 @@
 *.pyc
 *.pyo
 *~
+
 # Python libraries.
 *.whl
 *.exe
