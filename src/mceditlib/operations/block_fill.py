@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 
 
 def blockReplaceTable(blockReplacements):
-    blockTable = numpy.rollaxis(numpy.indices((16384, 32), dtype='u2'), 0, 3)
+    blockTable = numpy.rollaxis(numpy.indices((blocktypes.id_limit, 32), dtype='u2'), 0, 3)
 
     for old, new in blockReplacements:
         blockTable[old.ID, old.meta] = [new.ID, new.meta]

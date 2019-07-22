@@ -92,9 +92,9 @@ class BlockType(namedtuple("_BlockType", "ID meta blocktypeSet")):
         return self.blocktypeSet.getBlockTypeAttr(self, attr)
     
     def __nonzero__(self):
-        return int(self.ID) != 0  # self.ID is a numpy.int
+        return int(self.ID) != 0  # self.ID is a numpy.int 
 
-id_limit = 4096
+id_limit = 8192 # default 4096, super high 16384 and new 8192
 
 
 class SortedSet(MutableSet):
